@@ -1,0 +1,26 @@
+<h3>
+  <a [title]="'Detalles  ' + product.name" [routerLink]="['/products',product.id]">
+    {{ product.name }}
+  </a>
+
+  <p-dialog header="{{product.name}}" [(visible)]="display"> 
+    Precio: {{product.price}}
+    <img src="./assets/phones/{{product.images}}" width="100px" height="100px" alt="Sin imagen"> 
+    
+    <button type="button" (click)="addToCart(product)">Buy</button>
+  </p-dialog>
+
+  <button
+    type="button"
+    (click)="showDialog()"
+    icon="pi pi-info-circle"
+    label="Mostrar"
+  ></button>
+
+  <p *ngIf="product.description">Descripción: {{ product.description }}</p>
+
+  <button type="button" (click)="share()">Compartir</button>
+
+  <app-product-alerts [product]="product" (notify)="onNotify()">
+  </app-product-alerts>
+</h3>
