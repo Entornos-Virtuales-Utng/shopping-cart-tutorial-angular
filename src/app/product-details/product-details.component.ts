@@ -10,7 +10,7 @@ import { CartService } from "../cart.service";
 })
 export class ProductDetailsComponent {
   product: Product | undefined;
-  productos: CartProduct[] = []; //Productos para el carrito
+  productos = this.cartService.getItems();
 
   constructor(
     private route: ActivatedRoute,
@@ -18,8 +18,11 @@ export class ProductDetailsComponent {
   ) {}
 
   addToCart(product: Product) {
+    console.log('Agregando producto...');
     this.productos = this.cartService.getItems(); //Extrae los productos de carrito
 
+    let total = this.cartService.getTotal();
+    total += product.price;
     this.cartService.addToCart({
       id: product.id,
       name: product.name,
@@ -27,7 +30,8 @@ export class ProductDetailsComponent {
       price: product.price,
       quantity: 1,
     });
-    window.alert("Your product has been added to the cart!");
+    this.cartService.setTotal(total);
+    window.alert("Tú producto ha sido agregado al carrito!");
   }
 
   ngOnInit() {

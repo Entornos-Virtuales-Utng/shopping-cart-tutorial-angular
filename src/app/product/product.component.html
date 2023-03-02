@@ -1,20 +1,29 @@
 <h3>
-  <a [title]="'Detalles  ' + product.name" [routerLink]="['/products',product.id]">
+  <a
+    [title]="'Detalles  ' + product.name"
+    [routerLink]="['/products', product.id]"
+  >
     {{ product.name }}
   </a>
 
-  <p-dialog header="{{product.name}}" [(visible)]="display"> 
-    Precio: {{product.price}}
-    <img src="./assets/phones/{{product.images}}" width="100px" height="100px" alt="Sin imagen"> 
-    
+  <p-dialog header="{{ product.name }}" [(visible)]="display" [style]="{width: '50vw', height: '50vw'}">
+    Precio: {{ product.price }}
+    <img
+      src="./assets/phones/{{ product.images }}"
+      width="100px"
+      height="100px"
+      alt="Sin imagen"
+    />
+    <!--p-toast position="top-center" style="position: absolute;top: 40px; left: 40px;"> </p-toast-->
     <button type="button" (click)="addToCart(product)">Buy</button>
   </p-dialog>
 
   <button
+    pButton 
     type="button"
     (click)="showDialog()"
-    icon="pi pi-info-circle"
-    label="Mostrar"
+    icon="pi pi-eye"
+    iconPos="left"
   ></button>
 
   <p *ngIf="product.description">Descripción: {{ product.description }}</p>

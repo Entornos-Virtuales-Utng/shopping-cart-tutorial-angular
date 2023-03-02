@@ -1,7 +1,13 @@
 <h3>Cart</h3>
+<p>
+  <a routerLink="/shipping">Shipping Prices</a>
+</p>
 
 <div class="cart-item" *ngFor="let item of items">
   <span>{{ item.name }}</span>
   <span>{{ item.price | currency }}</span>
   <span>{{ item.quantity}}</span>
+</div>
+<div *ngIf="total > 0" class="cart-item">
+  <span style="text-align:right; color:red">Total ={{total | currency}}</span>
 </div>
